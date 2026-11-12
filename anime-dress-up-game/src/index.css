@@ -1,0 +1,256 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Mitr", "Noto Sans Thai", "Leelawadee UI", "Thonburi", system-ui, sans-serif;
+  --font-hand: "Mali", "Mitr", "Thonburi", cursive;
+
+  --color-ink: #3b2843;
+  --color-ink-soft: #715c7a;
+  --color-cream: #fff9f0;
+  --color-paper: #fff1e2;
+  --color-peach: #ffdcc9;
+  --color-coral: #ff7f8e;
+  --color-coral-deep: #ea5670;
+  --color-mint: #a9e3d0;
+  --color-butter: #ffd872;
+  --color-lilac: #d6c5fb;
+
+  --shadow-pop: 4px 4px 0 0 #3b2843;
+  --shadow-pop-sm: 2.5px 2.5px 0 0 #3b2843;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  background-color: var(--color-peach);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgb(59 40 67 / 0.09) 1.2px, transparent 0),
+    linear-gradient(160deg, #ffe7d6 0%, #ffd3c4 55%, #f9c9d4 100%);
+  background-size:
+    22px 22px,
+    100% 100%;
+  background-attachment: fixed;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-h {
+  height: 100vh;
+  height: 100dvh;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-coral-deep);
+  outline-offset: 2px;
+}
+
+/* chunky "sticker" press feedback */
+.press {
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background-color 0.15s ease;
+}
+.press:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 0 var(--color-ink);
+}
+
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(59 40 67 / 0.3) transparent;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- animations ---------- */
+@keyframes wear-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-3.5%) scale(1.07);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(0.5%) scale(0.994);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.wear-in {
+  animation: wear-in 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+}
+
+@keyframes doll-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.55%);
+  }
+}
+.doll-bob {
+  animation: doll-bob 4.4s ease-in-out infinite;
+}
+
+@keyframes bubble-life {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.92);
+  }
+  5%,
+  90% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+.bubble {
+  animation: bubble-life 6.5s ease both;
+}
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* there is room beside the doll on large screens, so the line stays visible */
+@media (min-width: 1024px) {
+  .bubble {
+    animation: bubble-in 0.35s ease both;
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(110deg) translateY(-22px);
+  }
+}
+.sparkle {
+  animation: sparkle 0.8s ease-out both;
+}
+
+@keyframes heart-pop {
+  0% {
+    transform: scale(0) rotate(-20deg);
+  }
+  70% {
+    transform: scale(1.25) rotate(6deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+.heart-pop {
+  animation: heart-pop 0.45s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-7px);
+  }
+  40% {
+    transform: translateX(7px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+.shake {
+  animation: shake 0.42s ease;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pop-in {
+  animation: pop-in 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fade-in 0.2s ease both;
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.bar-grow {
+  transform-origin: left;
+  animation: bar-grow 0.7s 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .bubble {
+    animation: none;
+  }
+}
