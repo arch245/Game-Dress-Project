@@ -1,0 +1,6 @@
+# Reproducible frontend/build and art-pipeline outputs
+node_modules/
+dist/
+src/assets/
+tools/out/
+*.tsbuildinfo
